@@ -1,0 +1,9 @@
+- [ ] Deve ser possível listar todos os livros
+- [ ] Deve ser possível listar os livros disponíveis
+- [ ] Deve ser possível listar todos os autores
+- [ ] Deve ser possível cadastrar um author
+- [ ] Deve ser possível buscar livros por autor
+- [ ] Deve ser possível se registrar
+- [ ] Deve ser possível buscar seu cadastro
+- [ ] Deve ser possível pegar um livro emprestado
+- [ ] Deve ser possível devolver um livro emprestado
