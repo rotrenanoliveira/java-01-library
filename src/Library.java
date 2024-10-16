@@ -47,12 +47,14 @@ public class Library {
         return loans;
     }
 
-    public void loadBook(Book book, Customer customer) throws Exception {
+    public void loanBook(Book book, Customer customer) throws Exception {
         if (!book.isAvailable()) {
             throw new Exception("Book is not available.");
         }
 
         Loan loan = new Loan(book, customer);
         loans.add(loan);
+
+        book.setAvailable(false);
     }
 }

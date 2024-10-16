@@ -1,14 +1,137 @@
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.SimpleFormatter;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Library library = new Library("Ramund's Library");
+        Library library = getLibrary();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("---");
+            System.out.println("| Welcome to Brigid's Library");
+            System.out.println("---");
+            System.out.println("| 1 - List all books");
+            System.out.println("| 2 - List available books");
+            System.out.println("| 3 - List all authors");
+            System.out.println("| 4 - Register author");
+            System.out.println("| 5 - Loan book");
+            System.out.println("| 6 - Return book");
+            System.out.println("| 9 - Leave");
+
+            System.out.println("\n Please enter your choice.");
+            int answer = scanner.nextInt();
+
+            int [] options = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+            boolean isValid = false;
+            for (int option : options) {
+                if (option == answer) {
+                    isValid = true;
+                    break;
+                }
+            }
+
+            if (!isValid) {
+                System.out.println("Invalid option! Please provide a valid option.");
+                answer = scanner.nextInt();
+            }
+
+            if (answer == 9) {
+                System.out.println("Thank you for using Brigid's Library, see you next time!");
+                break;
+            }
+            // List all books
+            if (answer == 1) {
+                System.out.println("Here's a list of all books \n");
+
+                for (int i = 0; i < library.getBooks().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getBooks().get(i).getTitle());
+                }
+
+                System.out.println("\n What you want to do next?");
+                answer = scanner.nextInt();
+            }
+            // List available books
+            if (answer == 2) {
+                System.out.println("Here's a list of all available books \n");
+
+                for (int i = 0; i < library.getBooksAvailable().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getBooksAvailable().get(i).getTitle());
+                }
+
+                System.out.println("\n What you want to do next?");
+                answer = scanner.nextInt();
+            }
+            // List authors
+            if (answer == 3) {
+                System.out.println("Here's a list of all authors \n");
+
+                for (int i = 0; i < library.getAuthors().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getAuthors().get(i).getName());
+                }
+
+                System.out.println("\n What you want to do next?");
+                answer = scanner.nextInt();
+            }
+            // Register author
+            if (answer == 4) {
+                System.out.println("Enter the author firstname");
+                String authorFirstName = scanner.next();
+                System.out.println("Enter the author lastname");
+                String authorLastname = scanner.next();
+
+                String authorName = String.format("%s %s", authorFirstName, authorLastname);
+
+                Author newAuthor = new Author(authorName, new Date());
+                library.addAuthor(newAuthor);
+
+                System.out.println("Author " + authorName + " registered successfully!");
+
+                System.out.println("What you want to do next?");
+                answer = scanner.nextInt();
+            }
+            // Loan book
+            if (answer == 5) {
+                System.out.println("Here's a list of all available books \n");
+
+                for (int i = 0; i < library.getBooksAvailable().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getBooksAvailable().get(i).getTitle());
+                }
+
+                System.out.println("\nEnter the code of the book you want to loan.");
+                int bookIndex = scanner.nextInt();
+
+                Book selectedBook = library.getBooksAvailable().get(bookIndex);
+
+                System.out.println("What is your firstname?");
+                String username = scanner.next();
+
+                System.out.println("What is your email address");
+                String email = scanner.next();
+
+                Customer customer = new Customer(username, email, new Date());
+
+                try {
+                    library.loanBook(selectedBook, customer);
+                    System.out.println("Book " + selectedBook.getTitle() + " loan successfully!");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    System.out.println("What you want to do next?");
+                    answer = scanner.nextInt();
+                }
+            }
+
+        }
+
+        // scanner.close();
+    }
+
+    private static Library getLibrary() {
+        Library library = new Library("Brigid's Library");
 
         // Populate library - Authors
         Author author1 = new Author("J.R.R Tolkien", new Date());
@@ -20,50 +143,6 @@ public class Main {
         library.addBook(book1);
         Book book2 = new Book("Do droids dreams with electric sheep?",  author2);
         library.addBook(book2);
-
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Do you like to see the available books? (y/n)");
-            String answer = scanner.next().toLowerCase();
-
-            if (!answer.equals("y") && !answer.equals("n")) {
-                System.out.println("Invalid option! Please answer with 'y' or 'n'.");
-                answer = scanner.next().toLowerCase();
-            }
-
-            if (answer.equals("n")) {
-                System.out.println("Thank you for using Ramund's Library, see you next time!");
-                break;
-            }
-
-            List<Book> availableBooks = library.getBooksAvailable();
-
-            if (availableBooks.isEmpty()) {
-                System.out.println("I'm sorry, we ran out of a books!");
-                break;
-            }
-
-            for (int i = 0; i < availableBooks.size(); i++) {
-                System.out.println((i + 1) + ") " + availableBooks.get(i).getTitle());
-            }
-
-            System.out.println("Enter the ID of the book you wish to borrow:");
-            int bookIndex = scanner.nextInt();
-            scanner.nextLine();
-
-            if (bookIndex > availableBooks.size()) {
-                System.out.println("Invalid option! Please provide a valid book ID.");
-                bookIndex = scanner.nextInt();
-            }
-
-            Book bookChosen = availableBooks.get(bookIndex - 1);
-
-            if (!bookChosen.isAvailable()) {
-                System.out.println("I'm sorry this book is not available.");
-            }
-        }
-
-        scanner.close();
+        return library;
     }
 }
