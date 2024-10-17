@@ -46,6 +46,7 @@ public class Loan {
 
     public void returnBook() {
         this.returnDate = new Date();
+        this.book.setAvailable(true);
         this.isActive = false;
     }
 }

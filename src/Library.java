@@ -47,6 +47,10 @@ public class Library {
         return loans;
     }
 
+    public List<Loan> getActiveLoans() {
+        return loans.stream().filter(Loan::isActive).toList();
+    }
+
     public void loanBook(Book book, Customer customer) throws Exception {
         if (!book.isAvailable()) {
             throw new Exception("Book is not available.");
@@ -56,5 +60,23 @@ public class Library {
         loans.add(loan);
 
         book.setAvailable(false);
+    }
+
+    public void returnBook(String email) throws Exception {
+        Loan loan = this.findLoanByCustomerEmail(email);
+        loan.returnBook();
+    }
+
+    public Loan findLoanByCustomerEmail(String email) throws Exception {
+        List<Loan> userLoans = this.loans
+                .stream()
+                .filter(Loan::isActive)
+                .filter(loan -> loan.getCustomer().getEmail().equals(email)).toList();
+
+        if (userLoans.isEmpty()) {
+            throw new Exception("User has no active Loans");
+        }
+
+        return userLoans.get(0);
     }
 }
