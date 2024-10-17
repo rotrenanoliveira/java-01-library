@@ -3,4 +3,6 @@
 - [x] Deve ser possível listar todos os autores
 - [x] Deve ser possível cadastrar um author
 - [x] Deve ser possível pegar um livro emprestado
-- [ ] Deve ser possível devolver um livro emprestado
+- [x] Deve ser possível listar todos os emprestados
+- [x] Deve ser possível listar todos os emprestimos ativos
+- [x] Deve ser possível devolver um livro emprestado

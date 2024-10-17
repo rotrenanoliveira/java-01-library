@@ -19,6 +19,8 @@ public class Main {
             System.out.println("| 4 - Register author");
             System.out.println("| 5 - Loan book");
             System.out.println("| 6 - Return book");
+            System.out.println("| 7 - List all loans");
+            System.out.println("| 8 - List active loans");
             System.out.println("| 9 - Leave");
 
             System.out.println("\n Please enter your choice.");
@@ -104,7 +106,7 @@ public class Main {
                 System.out.println("\nEnter the code of the book you want to loan.");
                 int bookIndex = scanner.nextInt();
 
-                Book selectedBook = library.getBooksAvailable().get(bookIndex);
+                Book selectedBook = library.getBooksAvailable().get(bookIndex - 1);
 
                 System.out.println("What is your firstname?");
                 String username = scanner.next();
@@ -123,6 +125,43 @@ public class Main {
                     System.out.println("What you want to do next?");
                     answer = scanner.nextInt();
                 }
+            }
+            // Return book
+            if (answer == 6) {
+                System.out.println("Ok, what is your email? \n");
+                String userEmail = scanner.next();
+
+                try {
+                    library.returnBook(userEmail);
+                    System.out.println("Book returned successfully!");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    System.out.println("What you want to do next?");
+                    answer = scanner.nextInt();
+                }
+            }
+            // List all loans
+            if (answer == 7) {
+                System.out.println("Here's a list of all loans \n");
+
+                for (int i = 0; i < library.getLoans().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getLoans().get(i).getBook().getTitle() + "loan by" + library.getActiveLoans().get(i).getCustomer().getName());
+                }
+
+                System.out.println("\n What you want to do next?");
+                answer = scanner.nextInt();
+            }
+            // List active loans
+            if (answer == 8) {
+                System.out.println("Here's a list of all loans \n");
+
+                for (int i = 0; i < library.getActiveLoans().size(); i++) {
+                    System.out.println("| " + (i + 1) + " - " + library.getActiveLoans().get(i).getBook().getTitle() + " loan by " + library.getActiveLoans().get(i).getCustomer().getName());
+                }
+
+                System.out.println("\n What you want to do next?");
+                answer = scanner.nextInt();
             }
 
         }
