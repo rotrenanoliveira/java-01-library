@@ -1,5 +1,5 @@
 # [EN] Book Lending App
-This is a simple book lending application built with [mention your chosen technology, e.g., Python, Node.js, etc.]. It allows users to manage their library, borrow and return books.
+This is a simple book lending application built with Java. It allows users to manage their library, borrow and return books.
 
 ## Features:
 
@@ -19,7 +19,7 @@ This is a simple book lending application built with [mention your chosen techno
 
 # [PT-BR] Aplicativo de Empréstimo de Livros
 
-Este é um aplicativo simples de gerenciamento de livros com [mencione a tecnologia utilizada, por exemplo, Python, Node.js, etc.]. Ele permite que os usuários gerenciem sua biblioteca, emprestam e devolvam livros.
+Este é um aplicativo simples de gerenciamento de livros com Java. Ele permite que os usuários gerenciem sua biblioteca, emprestam e devolvam livros.
 
 ## Funcionalidades:
 
