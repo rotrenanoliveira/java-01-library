@@ -1,8 +1,38 @@
-- [x] Deve ser possível listar todos os livros
-- [x] Deve ser possível listar os livros disponíveis
-- [x] Deve ser possível listar todos os autores
-- [x] Deve ser possível cadastrar um author
-- [x] Deve ser possível pegar um livro emprestado
-- [x] Deve ser possível listar todos os emprestados
-- [x] Deve ser possível listar todos os emprestimos ativos
-- [x] Deve ser possível devolver um livro emprestado
+# [EN] Book Lending App
+This is a simple book lending application built with [mention your chosen technology, e.g., Python, Node.js, etc.]. It allows users to manage their library, borrow and return books.
+
+## Features:
+
+### Book Management:
+
+- List all books
+- List available books
+- List all authors
+- Add new authors
+
+### Borrowing:
+
+- Borrow a book
+- List all borrowed books
+- List all active loans
+- Return a borrowed book
+
+# [PT-BR] Aplicativo de Empréstimo de Livros
+
+Este é um aplicativo simples de gerenciamento de livros com [mencione a tecnologia utilizada, por exemplo, Python, Node.js, etc.]. Ele permite que os usuários gerenciem sua biblioteca, emprestam e devolvam livros.
+
+## Funcionalidades:
+
+### Gerenciamento de Livros:
+
+- Listar todos os livros
+- Listar livros disponíveis
+- Listar todos os autores
+- Adicionar um novo autor
+
+### Empréstimo:
+
+- Emprestar um livro
+- Listar todos os livros emprestados
+- Listar todos os empréstimos ativos
+- Devolver um livro emprestado
